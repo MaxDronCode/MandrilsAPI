@@ -8,5 +8,5 @@ public class Mandril
 
     public string Surname { get; set; } = string.Empty;
 
-    public List<Hability>? Habilities { get; set; }
+    public List<Hability>? Habilities { get; set; } = new List<Hability>();
 }

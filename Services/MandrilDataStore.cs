@@ -43,13 +43,13 @@ public class MandrilDataStore
                 {
                     new Hability()
                     {
-                        Id = 3,
+                        Id = 1,
                         Name = "Mirar Intensamente",
                         Potency = EPotency.Intenso
                     },
                     new Hability()
                     {
-                        Id = 4,
+                        Id = 2,
                         Name = "Dormir",
                         Potency = EPotency.RePotente
                     }
@@ -64,13 +64,13 @@ public class MandrilDataStore
                 {
                     new Hability()
                     {
-                        Id = 5,
+                        Id = 1,
                         Name = "Comer",
                         Potency = EPotency.Extremo
                     },
                     new Hability()
                     {
-                        Id = 6,
+                        Id = 2,
                         Name = "Vomitar",
                         Potency = EPotency.Suave
                     }

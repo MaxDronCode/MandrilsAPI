@@ -1,14 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using MandrilAPI.Enums;
 
 namespace MandrilAPI.Models;
 
-public class MandrilCreateDTO
+public class HabilityCreateDTO
 {
     [Required]
-    [StringLength(50)]
     public string Name { get; set; } = string.Empty;
 
     [Required]
-    [StringLength(50)]
-    public string Surname { get; set; } = string.Empty;
+    public EPotency Potency { get; set; }
 }
