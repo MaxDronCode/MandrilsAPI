@@ -18,10 +18,56 @@ public class MandrilController : ControllerBase
     public ActionResult<Mandril> GetMandril(int id)
     {
         var mandril = MandrilDataStore.Current.Mandrils.FirstOrDefault(m => m.Id == id);
+
         if (mandril == null)
-        {
             return NotFound("El mandril solicitado no existe");
-        }
+
         return Ok(mandril);
+    }
+
+    [HttpPost]
+    public ActionResult<Mandril> CreateMandril(MandrilCreateDTO mandrilCreateDTO)
+    {
+        var lastMandrilId = MandrilDataStore.Current.Mandrils.Max(x => x.Id);
+        var newMandril = new Mandril()
+        {
+            Id = lastMandrilId + 1,
+            Name = mandrilCreateDTO.Name,
+            Surname = mandrilCreateDTO.Surname,
+        };
+
+        MandrilDataStore.Current.Mandrils.Add(newMandril);
+
+        return CreatedAtAction(nameof(GetMandril),
+            new { id = newMandril.Id },
+            newMandril
+        );
+    }
+
+    [HttpPut("{mandrilId}")]
+    public ActionResult<Mandril> UpdateMandril(int mandrilId, MandrilCreateDTO mandrilUpdatted)
+    {
+        var mandril = MandrilDataStore.Current.Mandrils.FirstOrDefault(x => x.Id == mandrilId);
+
+        if (mandril == null)
+            return NotFound("El mandril seleccionado no existe");
+
+        mandril.Name = mandrilUpdatted.Name;
+        mandril.Surname = mandrilUpdatted.Surname;
+
+        return NoContent();
+    }
+
+    [HttpDelete("{mandrilId}")]
+    public ActionResult DeleteMandril(int mandrilId)
+    {
+        var mandril = MandrilDataStore.Current.Mandrils.FirstOrDefault(x => x.Id == mandrilId);
+
+        if (mandril == null)
+            return NotFound("El mandril seleccionado no existe");
+
+        MandrilDataStore.Current.Mandrils.Remove(mandril);
+
+        return NoContent();
     }
 }
