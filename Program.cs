@@ -1,3 +1,6 @@
+using MandrilAPI.Db;
+using MandrilAPI.Repository;
+using MandrilAPI.Services;
 
 namespace MandrilAPI
 {
@@ -13,6 +16,9 @@ namespace MandrilAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddSingleton<MandrilDataStore>();
+            builder.Services.AddSingleton<MandrilRepo, MandrilRepoImpl>();
+            builder.Services.AddSingleton<MandrilService>();
 
             var app = builder.Build();
 
@@ -24,7 +30,6 @@ namespace MandrilAPI
             }
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

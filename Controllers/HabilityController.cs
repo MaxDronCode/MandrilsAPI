@@ -9,10 +9,17 @@ namespace MandrilAPI.Controllers;
 [Route("api/Mandril/{mandrilId}/[controller]")]
 public class HabilityController : ControllerBase
 {
+    private MandrilService mandrilService;
+
+    public HabilityController(MandrilService mandrilService)
+    {
+        this.mandrilService = mandrilService;
+    }
+
     [HttpGet]
     public ActionResult<IEnumerable<Hability>> GetHabilities(int mandrilId)
     {
-        var mandril = MandrilService.getMandrilById(mandrilId);
+        var mandril = mandrilService.GetMandril(mandrilId);
 
         if (mandril == null)
             return NotFound(Messages.Mandril.NotFound);
@@ -23,7 +30,7 @@ public class HabilityController : ControllerBase
     [HttpGet("{habilityId}")]
     public ActionResult<Hability> GetHability(int mandrilId, int habilityId)
     {
-        var mandril = MandrilService.getMandrilById(mandrilId);
+        var mandril = mandrilService.GetMandril(mandrilId);
 
         if (mandril == null)
             return NotFound(Messages.Mandril.NotFound);
@@ -39,7 +46,7 @@ public class HabilityController : ControllerBase
     [HttpPost]
     public ActionResult<Hability> CreateHability(int mandrilId, HabilityCreateDTO habilityCreateDto)
     {
-        var mandril = MandrilService.getMandrilById(mandrilId);
+        var mandril = mandrilService.GetMandril(mandrilId);
 
         if (mandril == null)
             return NotFound(Messages.Mandril.NotFound);
@@ -69,7 +76,7 @@ public class HabilityController : ControllerBase
     [HttpPut("{habilityId}")]
     public ActionResult<Hability> UpdateHability(int mandrilId, int habilityId, HabilityCreateDTO habilityCreateDto)
     {
-        var mandril = MandrilService.getMandrilById(mandrilId);
+        var mandril = mandrilService.GetMandril(mandrilId);
 
         if (mandril == null)
             return NotFound(Messages.Mandril.NotFound);
@@ -94,7 +101,7 @@ public class HabilityController : ControllerBase
     [HttpDelete("{habilityId}")]
     public ActionResult DeleteHability(int mandrilId, int habilityId)
     {
-        var mandril = MandrilService.getMandrilById(mandrilId);
+        var mandril = mandrilService.GetMandril(mandrilId);
 
         if (mandril == null)
             return NotFound(Messages.Mandril.NotFound);

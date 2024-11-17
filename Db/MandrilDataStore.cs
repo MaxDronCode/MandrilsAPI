@@ -1,7 +1,7 @@
 ﻿using MandrilAPI.Enums;
 using MandrilAPI.Models;
 
-namespace MandrilAPI.Services;
+namespace MandrilAPI.Db;
 
 public class MandrilDataStore
 {
